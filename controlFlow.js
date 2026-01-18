@@ -1,6 +1,5 @@
 // GROWING PAINS
-
-// Constants //
+// Constants
 const PI = 3.1415;
 const radius = 5;
 const area = PI * radius * radius;
@@ -26,7 +25,7 @@ function predictGrowth(weeks) {
     console.log(`Capacity: ${capacityPercent.toFixed(2)}%`);
 
     // Control Flow Logic
-    if (capacityPercent > 80%) {
+    if (capacityPercent > 80) {
         console.log("Status: PRUNE (Exeeds 80% capacity)");
     } else if (capacityPercent >= 50 && capacityPercent <=80){
         console.log("Status: MONITOR (Between 50% and 80% capacity)");
@@ -39,3 +38,42 @@ function predictGrowth(weeks) {
 predictGrowth(1);
 predictGrowth(2);
 predictGrowth(3);
+
+
+// PART TWO: THINKING BIGGER
+const startCount = 100;
+const weeks = 10;
+
+// Calculation: New Total Plant Amount
+const totalPlants = startCount * (2 ** weeks);
+
+// Calculation New Space Required
+const spaceRequired = totalPlants *minSpacePerPlant;
+
+// Calculation: New Radius
+const newRadius = Math.sqrt(spaceRequired / PI);
+
+console.log(`After 10 weeks, you will have ${totalPlants} plants.`);
+console.log(`You nee ${spaceRequired} square meters.`);
+console.log(`The radius of this expanded garden must be ${newRadius.toFixed(2)} meters.`);
+
+//PART THREE: ERRORS IN JUDGEMENT
+const highStart = 100; 
+
+try {
+    const requiredSpace = highStart * minSpacePerPlant;
+    const availableSpace = area;
+
+    console.log(`Attempting to plant ${highStart} plants...`);
+
+
+    // Assess if plants fit
+    if (requiredSpace > availableSpace) {
+        throw new Error("Insufficient space! Cannot plant 100 plants in this garden.");
+    }
+    
+    console.log("Plants planted successfully!");
+
+}   catch(error) {
+    console.error(`ERROR CAUGHT: ${error.message}`);
+}
